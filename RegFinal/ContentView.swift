@@ -2,20 +2,27 @@
 //  ContentView.swift
 //  RegFinal
 //
-//  Created by Виталий Багаутдинов on 26.01.2025.
+//  Created by Виталий Багаутдинов on 21.01.2025.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var log_status: Bool = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+            if !log_status {
+                HomeView()
+            } else {
+                SignInView()
+            }
+        }.onAppear(perform: {
+            let user = SupabaseManager.instance.supabase.auth.currentUser
+            print(user)
+            self.log_status = user == nil
+        })
     }
 }
 
