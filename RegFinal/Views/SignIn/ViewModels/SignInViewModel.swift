@@ -21,11 +21,11 @@ class SignInViewModel: ObservableObject {
         self.passwordError = password.isEmpty ? true : false
         self.passwordError = password.count <= 5 ? true : false
         self.isAlertPassword = passwordError
-        if emailError || passwordError {
-            return false
-        } else {
+        
+        guard emailError || passwordError else {
             return true
         }
+        return false
     }
     
 }

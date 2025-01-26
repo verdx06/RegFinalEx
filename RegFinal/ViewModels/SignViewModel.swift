@@ -29,7 +29,11 @@ class SignViewModel: ObservableObject {
                     self.isNavigate = false
                     self.isProgress = true
                 }
-                try await SupabaseManager.instance.signin(email: email, password: password)
+                
+                if isNavigate == false {
+                    try await SupabaseManager.instance.signin(email: email, password: password)
+                }
+                
                 await MainActor.run {
                     self.isProgress = false
                     self.isNavigate = true
