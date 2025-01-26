@@ -23,26 +23,7 @@ class SignViewModel: ObservableObject {
     @Published var isProgress: Bool = false
     
     func signin(email: String, password: String) { //
-        Task {
-            do {
-                await MainActor.run {
-                    self.isNavigate = false
-                    self.isProgress = true
-                }
-                try await SupabaseManager.instance.signin(email: email, password: password)
-                await MainActor.run {
-                    self.isProgress = false
-                    self.isNavigate = true
-                }
-            }
-            catch {
-                print(error.localizedDescription)
-                await MainActor.run {
-                    self.isProgress = false
-                    self.isNavigate = false
-                }
-            }
-        }
+        Task {        }
     }
     
     func register(name: String, email: String, password: String) {//
