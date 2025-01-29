@@ -37,4 +37,71 @@ class SupabaseManager {
         try await SupabaseManager.instance.supabase.auth.signOut()
     }
     
+    func getCategory() async throws -> [CategoryModel] {
+        let getcategories = try await supabase.from("category").select().execute()
+        
+        let category = try JSONDecoder().decode([CategoryModel].self, from: getcategories.data)
+        
+        return category
+    }
+    
+    func getSneakers() async throws -> [SneakerModel] {
+        let getsneaker = try await supabase.from("sneakers").select().execute()
+        
+        let sneaker = try JSONDecoder().decode([SneakerModel].self, from: getsneaker.data)
+        
+        return sneaker
+    }
+    
+    func getCart() async throws -> [CartModel] {
+        let getcart = try await supabase.from("cart").select().execute()
+        
+        let cart = try JSONDecoder().decode([CartModel].self, from: getcart.data)
+        
+        return cart
+    }
+    
+    func getFavorite() async throws -> [FavoriteModel] {
+        let getfavorite = try await supabase.from("favorite").select().execute()
+        
+        let favorite = try JSONDecoder().decode([FavoriteModel].self, from: getfavorite.data)
+        
+        return favorite
+        
+    }
+    
+    func addFavorite(sneaker: Int) async throws {
+        let user = try await supabase.auth.session.user
+        
+        let newFavorite = FavoriteModel(
+            id: UUID(),
+            id_user: user.id,
+            id_sneaker: sneaker
+        )
+        
+        try await supabase.from("favorite").insert(newFavorite).execute()
+        
+    }
+    
+    func deleteFavorite(sneaker: Int) async throws {
+        let user = try await supabase.auth.session.user
+        try await supabase.from("favorite").delete().eq("id_user", value: user.id).eq("id_sneaker", value: sneaker).execute()
+    }
+    
+    func addNewItemCart(sneaker: Int) async throws {
+        let user = try await supabase.auth.session.user
+        let newItemInCart = CartModel(
+            id: UUID(),
+            id_user: user.id,
+            id_sneaker: sneaker,
+            count: 1
+        )
+        try await supabase.from("cart").insert(newItemInCart).execute()
+    }
+    
+    func addCart(sneaker: Int, count: Int) async throws {
+        let user = try await supabase.auth.session.user
+        try await supabase.from("cart").update(["count" : count+1]).eq("id_user", value: user.id).eq("id_sneaker", value: sneaker).execute()
+    }
+    
 }

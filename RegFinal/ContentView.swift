@@ -20,7 +20,6 @@ struct ContentView: View {
             }
         }.onAppear(perform: {
             let user = SupabaseManager.instance.supabase.auth.currentUser
-            print(user)
             self.log_status = user == nil
         })
     }

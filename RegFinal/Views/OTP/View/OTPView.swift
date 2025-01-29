@@ -12,7 +12,7 @@ struct OTPView: View {
     @State var verifycode: [String] = Array(repeating: "", count: 6)
     @State var error: Bool = false
     
-    @State var second: Int = 5
+    @State var second: Int = 60
     @State var timer: Timer?
     
     @FocusState var OTPfocus: Int?
@@ -60,7 +60,7 @@ struct OTPView: View {
     }
     
     func timerupdate() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             if second > 0 {
                 second = second - 1
             }
