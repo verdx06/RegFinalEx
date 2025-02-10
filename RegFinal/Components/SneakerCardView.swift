@@ -36,9 +36,11 @@ struct SneakerCardView: View {
                 }
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("BEST SELLER")
-                            .foregroundStyle(Color.accent)
-                            .font(.system(size: 12))
+                        if sneaker.popular {
+                            Text("BEST SELLER")
+                                .foregroundStyle(Color.accent)
+                                .font(.system(size: 12))
+                        }
                         Text(sneaker.name)
                             .padding(.top, 5)
                             .font(.system(size: 16))
@@ -105,14 +107,9 @@ struct SneakerCardView: View {
                                 .background(Color.accent)
                                 .cornerRadius(15)
                         } else {
-                            Image(systemName: cart ? "plus" : "cart")
-                                .padding(14)
-                                .foregroundStyle(Color.white)
-                                .background(Color.accent)
-                                .cornerRadius(15)
+                            Image(cart ? "plusbutton" : "cartbutton")
                         }
                     }.disabled(cartvm.isProgress)
-                    .offset(x: 5, y: 5)
 
                 }
             }
@@ -131,7 +128,7 @@ struct SneakerCardView: View {
             price: 753,
             description: "fwefwefwefwe",
             categor: "Outdoor",
-            image: "https://cvhyzhqnpngrccwhymld.supabase.co/storage/v1/object/sign/Sneakers/firstsneakers.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTbmVha2Vycy9maXJzdHNuZWFrZXJzLnBuZyIsImlhdCI6MTczNTExMzQ3NywiZXhwIjoxNzY2NjQ5NDc3fQ.hOiTb4-OUdwZUbDx8zu2dxczwWgtwSWwWM7BCxecOeU&t=2024-12-25T07%3A57%3A57.314Z"
+            image: "https://cvhyzhqnpngrccwhymld.supabase.co/storage/v1/object/sign/Sneakers/firstsneakers.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTbmVha2Vycy9maXJzdHNuZWFrZXJzLnBuZyIsImlhdCI6MTczNTExMzQ3NywiZXhwIjoxNzY2NjQ5NDc3fQ.hOiTb4-OUdwZUbDx8zu2dxczwWgtwSWwWM7BCxecOeU&t=2024-12-25T07%3A57%3A57.314Z", popular: true
         ),
         cart: true,
         heart: true,

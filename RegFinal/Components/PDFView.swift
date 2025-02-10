@@ -17,11 +17,13 @@ struct PDFKitView: UIViewRepresentable {
     func makeUIView(context: Context) -> PDFView {
         let pdf = PDFView()
         
-        if let url = Bundle.main.url(forResource: "document", withExtension: "pdf") {
+        if let url = Bundle.main.url(forResource: "documet", withExtension: "pdf") {
             if let document = PDFDocument(url: url) {
                 pdf.document = document
             }
         }
+        
         return pdf
+        
     }
 }

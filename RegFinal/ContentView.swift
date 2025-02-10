@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if !log_status {
-                HomeView()
+                TabbarView()
             } else {
                 SignInView()
             }

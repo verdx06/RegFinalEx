@@ -41,7 +41,7 @@ struct RegisterView: View {
                 footer
                 
             }.navigationDestination(isPresented: $svm.isNavigate, destination: {
-                HomeView()
+                TabbarView()
             })
             .alert(Text("Email error"), isPresented: $emailValidate.isAlert, actions: {
                 Button {

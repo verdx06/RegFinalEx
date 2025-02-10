@@ -71,7 +71,13 @@ class SignViewModel: ObservableObject {
     func signOut() {
         Task {
             do {
+                await MainActor.run {
+                    self.isNavigate = false
+                }
                 try await SupabaseManager.instance.signOut()
+                await MainActor.run {
+                    self.isNavigate = true
+                }
             }
             catch {
                 print(error.localizedDescription)

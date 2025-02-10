@@ -41,7 +41,7 @@ struct SignInView: View {
                 footer
                 
             }.navigationDestination(isPresented: $signViewModel.isNavigate, destination: {
-                HomeView()
+                TabbarView()
             })
             .alert(Text("Email error"), isPresented: $emailValidate.isAlert, actions: {
                 Button {

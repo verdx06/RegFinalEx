@@ -15,4 +15,5 @@ struct SneakerModel: Codable, Hashable {
     let description: String
     let categor: String
     let image: String
+    let popular: Bool
 }

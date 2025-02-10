@@ -104,4 +104,24 @@ class SupabaseManager {
         try await supabase.from("cart").update(["count" : count+1]).eq("id_user", value: user.id).eq("id_sneaker", value: sneaker).execute()
     }
     
+    func addTextInSearchField(text: String) async throws {
+        let user = try await supabase.auth.session.user
+        
+        let newSearch = SearchModel(
+            id: UUID(),
+            id_user: user.id,
+            searchtext: text
+        )
+        
+        try await supabase.from("searchable").insert(newSearch).execute()
+    }
+    
+    func getSearchText() async throws -> [SearchModel] {
+        let getSearchText = try await supabase.from("searchable").select().execute()
+        
+        let searchText = try JSONDecoder().decode([SearchModel].self, from: getSearchText.data)
+        
+        return searchText
+    }
+    
 }

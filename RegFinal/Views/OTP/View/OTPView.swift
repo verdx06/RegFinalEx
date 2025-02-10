@@ -60,7 +60,8 @@ struct OTPView: View {
     }
     
     func timerupdate() {
-        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if second > 0 {
                 second = second - 1
             }
@@ -69,9 +70,9 @@ struct OTPView: View {
     
     func secondFormat() -> String {
         let minute = second / 60
-        let second = second % 60
+        let seconds = second % 60
         
-        return String(format: "%02d:%02d", minute, second)
+        return String(format: "%02d:%02d", minute, seconds)
     }
     
 }

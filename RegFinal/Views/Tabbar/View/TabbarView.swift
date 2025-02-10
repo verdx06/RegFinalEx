@@ -11,11 +11,24 @@ struct TabbarView: View {
     
     @State var index: Int = 0
     
+    @StateObject var categoryvm = CategoryViewModel()
+    @StateObject var sneakervm = SneakerViewModel()
+    
+    @StateObject var cartvm = CartViewModel()
+    @StateObject var favoritevm = FavoriteViewModel()
+
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 if index == 0 {
-                    HomeView()
+                    HomeView(categoryvm: categoryvm, sneakervm: sneakervm, cartvm: cartvm, favoritevm: favoritevm)
+                }
+                else if index == 1 {
+                    FavoroteView(sneakers: sneakervm.sneakers, cartItems: cartvm.carts, favorits: favoritevm.favorits, index: $index)
+                }
+                else if index == 4 {
+                    ProfileView()
                 }
                 ZStack {
                     Image("tabbar")
@@ -27,9 +40,24 @@ struct TabbarView: View {
                         .padding()
                         .padding(.horizontal)
                     
+                    NavigationLink  {
+                        CartView(sneakers: sneakervm.sneakers, cartItems: cartvm.carts)
+                    } label: {
+                        Image("ButtonCartView")
+                            .offset(y: -15)
+                    }
+                    
                 }
-            }.edgesIgnoringSafeArea(.bottom)
-        }
+            }.onAppear(perform: {
+                categoryvm.getCategories()
+                cartvm.getCart()
+                favoritevm.getFavorite()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    sneakervm.getSneaker()
+                }
+            })
+            .edgesIgnoringSafeArea(.bottom)
+        }.navigationBarBackButtonHidden()
     }
 }
 
@@ -74,12 +102,12 @@ struct CustomTabs: View {
             Spacer(minLength: 12)
             
             Button {
-                self.index = 3
+                self.index = 4
             } label: {
                 Image(systemName: "person")
                     .resizable()
                     .frame(width: 25, height: 25)
-                    .foregroundColor(index == 3 ? Color.accent : Color.gray)
+                    .foregroundColor(index == 4 ? Color.accent : Color.gray)
             }
 
         }

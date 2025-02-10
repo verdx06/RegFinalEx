@@ -10,13 +10,14 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var signViewModel = SignViewModel()
-    @State var text: String = ""
     
-    @StateObject var categoryvm = CategoryViewModel()
-    @StateObject var sneakervm = SneakerViewModel()
+    @State var categoryvm: CategoryViewModel
+    @State var sneakervm: SneakerViewModel
     
-    @StateObject var cartvm = CartViewModel()
-    @StateObject var favoritevm = FavoriteViewModel()
+    @State var cartvm: CartViewModel
+    @State var favoritevm: FavoriteViewModel
+    
+    @State var count: Int = 0
     
     var body: some View {
         NavigationStack {
@@ -24,7 +25,12 @@ struct HomeView: View {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack(alignment: .leading) {
                     HStack {
-                        Image("Hamburger")
+                        NavigationLink {
+                            SideMenuView()
+                        } label: {
+                            Image("Hamburger")
+                        }
+
                         Spacer()
                         ZStack {
                             Text("Главная")
@@ -42,19 +48,27 @@ struct HomeView: View {
                         
                     }
                     HStack {
-                        ZStack {
-                            TextField("", text: $text)
-                                .padding(.horizontal, 45)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 55)
-                                .background(Color.white)
-                                .cornerRadius(20)
-                                .shadow(color: .gray.opacity(0.5), radius: 3, y: 5)
-                            HStack {
-                                Image("Marker-1")
-                                Spacer()
-                            }.padding(.horizontal)
+                        NavigationLink {
+                            SearchView(sneakers: sneakervm.sneakers, cartItems: cartvm.carts, favorite: favoritevm.favorits)
+                        } label: {
+                            ZStack {
+                                
+                                Rectangle()
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 45)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 55)
+                                    .background(Color.white)
+                                    .cornerRadius(20)
+                                    .shadow(color: .gray.opacity(0.5), radius: 3, y: 5)
+                                HStack {
+                                    Image("Marker-1")
+                                    Text("Поиск").foregroundStyle(Color.hint)
+                                    Spacer()
+                                }.padding(.horizontal)
+                            }
                         }
+
                         Button  {
                             //
                         } label: {
@@ -73,7 +87,7 @@ struct HomeView: View {
                         Text("Популярное")
                         Spacer()
                         NavigationLink  {
-                            //
+                            PopularView(sneakers: sneakervm.sneakers.filter({ $0.popular }), cartItems: cartvm.carts, favorits: favoritevm.favorits)
                         } label: {
                             Text("Все")
                         }
@@ -81,9 +95,7 @@ struct HomeView: View {
                     } .padding(.vertical)
                     
                     LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
-                        ForEach(sneakervm.sneakers, id: \.self) { sneaker in
-                            if sneaker.id <= 2 {
-                                
+                        ForEach(sneakervm.sneakers.filter({ $0.popular }).prefix(2), id: \.self) { sneaker in
                                 let cartImage = cartvm.carts.contains(where: { cartItem in
                                     cartItem.id_user == SupabaseManager.instance.supabase.auth.currentUser?.id && cartItem.id_sneaker == sneaker.id
                                 })
@@ -94,7 +106,6 @@ struct HomeView: View {
                                 
                                 SneakerCardView(sneaker: sneaker, cart: cartImage, heart: favorite, cartItems: cartvm.carts)
                             }
-                        }
                     }
                     
                     HStack {
@@ -117,18 +128,7 @@ struct HomeView: View {
                     
                     Spacer()
                 } .padding(.horizontal)
-            }.onAppear(perform: {
-                categoryvm.getCategories()
-                cartvm.getCart()
-                favoritevm.getFavorite()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    sneakervm.getSneaker()
-                }
-            })
+            }
         }
     }
-}
-
-#Preview {
-    HomeView()
 }

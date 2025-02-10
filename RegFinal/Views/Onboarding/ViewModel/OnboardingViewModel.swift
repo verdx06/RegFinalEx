@@ -21,7 +21,7 @@ class OnboardingViewModel: ObservableObject {
     
     func loadLastWatchedScreen() {
         if let lastwathed = UserDefaults.standard.string(forKey: UserDefault.lastWatched.rawValue) {
-            if let lastItem = queue.first(where: { $0.id == lastwathed }) {
+            if queue.first(where: { $0.id == lastwathed }) != nil {
                 if let index = queue.firstIndex(where: { $0.id == lastwathed }) {
                     queue.removeFirst(index)
                 }

@@ -20,7 +20,7 @@ final class OnboardingTests: XCTestCase {
 
     //Проверка на валидацию email
     func testEmailValidatePredicate() {
-        var email = EmailValidate()
+        let email = EmailValidate()
         
         XCTAssertTrue(email.EmailValidatePredicate(email: "name@domenname.ru"))
         
