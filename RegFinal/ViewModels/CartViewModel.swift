@@ -64,4 +64,14 @@ class CartViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteCart(sneaker: Int) {
+        Task {
+            do {
+                try await SupabaseManager.instance.deleteCart(sneaker: sneaker)
+            } catch {
+                
+            }
+        }
+    }
 }

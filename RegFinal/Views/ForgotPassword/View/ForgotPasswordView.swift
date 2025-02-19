@@ -12,54 +12,60 @@ struct ForgotPasswordView: View {
     @StateObject var fvm = ForgotViewModel()
     @ObservedObject var emailValidate = EmailValidate()
     
+    @State var popup = false
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack {
-                    Button  {
-                        //
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .frame(width: 40)
-                                .foregroundStyle(Color.background)
-                            Image("Back")
-                            
+            ZStack {
+                VStack {
+                    HStack {
+                        Button  {
+                            //
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 40)
+                                    .foregroundStyle(Color.background)
+                                Image("Back")
+                                
+                            }
+                            Spacer()
                         }
-                        Spacer()
+                        
                     }
+                    Text("Забыл пароль")
+                        .font(.custom("Raleway-v4020-Bold", size: 32))
+                        .font(.system(size: 32))
+                        .foregroundStyle(Color.text)
+                        .padding(10)
                     
-                }
-                Text("Забыл пароль")
-                    .font(.custom("Raleway-v4020-Bold", size: 32))
-                    .font(.system(size: 32))
-                    .foregroundStyle(Color.text)
-                    .padding(10)
-                
-                Text("Введите свою учетную запись\nдля сброса")
-                    .font(.system(size: 16))
-                    .foregroundStyle(Color.subTextDark)
-                    .multilineTextAlignment(.center)
-                
-                CustomTextField(title: "", example: "xyz@gmail.com", error: fvm.emailError, text: $fvm.email)
-                
-                    .padding(.bottom)
-                
-                CustomButton(namebuttom: "Отправить") {
-                    if fvm.checkEmail() {
-                        if emailValidate.EmailValidatePredicate(email: fvm.email) {
-                            fvm.isNavigate = true
+                    Text("Введите свою учетную запись\nдля сброса")
+                        .font(.system(size: 16))
+                        .foregroundStyle(Color.subTextDark)
+                        .multilineTextAlignment(.center)
+                    
+                    CustomTextField(title: "", example: "xyz@gmail.com", error: fvm.emailError, text: $fvm.email)
+                    
+                        .padding(.bottom)
+                    
+                    CustomButton(namebuttom: "Отправить") {
+                        if fvm.checkEmail() {
+                            if emailValidate.EmailValidatePredicate(email: fvm.email) {
+                                popup = true
+                                fvm.sendCode(email: "berkut589243@gmail.com")
+                            }
                         }
-                    }
-                }.padding(.vertical)
+                    }.padding(.vertical)
+                    
+                    Spacer()
+                }
                 
-                Spacer()
+                if popup {
+                    PopUpView(email: "berkut589243@gmail.com")
+                }
                 
             }.alert("Email Error", isPresented: $emailValidate.isAlert, actions: {
                 Text("Ok")
-            })
-            .navigationDestination(isPresented: $fvm.isNavigate, destination: {
-                OTPView()
             })
             .navigationBarBackButtonHidden()
             .padding(.horizontal)

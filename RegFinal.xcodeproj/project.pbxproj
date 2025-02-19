@@ -30,6 +30,8 @@
 		212264EF2D43D85800137763 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 212264EE2D43D85800137763 /* Realtime */; };
 		212264F12D43D85800137763 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 212264F02D43D85800137763 /* Storage */; };
 		212264F32D43D85800137763 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 212264F22D43D85800137763 /* Supabase */; };
+		21465FB22D6642EF0039B0B6 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21465FB12D6642EF0039B0B6 /* PasswordView.swift */; };
+		21465FB52D6643AE0039B0B6 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21465FB32D6643AE0039B0B6 /* PopUpView.swift */; };
 		214EC9342D49F9BA002233E7 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214EC9332D49F9BA002233E7 /* TabbarView.swift */; };
 		21701A942D3F807A00C24473 /* RegFinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21701A932D3F807A00C24473 /* RegFinalApp.swift */; };
 		21701A962D3F807A00C24473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21701A952D3F807A00C24473 /* ContentView.swift */; };
@@ -104,6 +106,8 @@
 		212264B62D426C0900137763 /* ForgotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewModel.swift; sourceTree = "<group>"; };
 		212264BA2D4270C500137763 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		212264C02D43879000137763 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		21465FB12D6642EF0039B0B6 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		21465FB32D6643AE0039B0B6 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		214EC9332D49F9BA002233E7 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		21701A902D3F807A00C24473 /* RegFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21701A932D3F807A00C24473 /* RegFinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegFinalApp.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				212264BA2D4270C500137763 /* OTPView.swift */,
+				21465FB12D6642EF0039B0B6 /* PasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +329,14 @@
 				212264C02D43879000137763 /* HomeView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		21465FB42D6643AE0039B0B6 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				21465FB32D6643AE0039B0B6 /* PopUpView.swift */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 		214EC9312D49F975002233E7 /* Tabbar */ = {
@@ -405,6 +418,7 @@
 		21701AA22D3F8FE400C24473 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21465FB42D6643AE0039B0B6 /* PopUp */,
 				21E7B1212D52733000F009EE /* Profile */,
 				21E7B11D2D52711C00F009EE /* SideMenu */,
 				214EC9312D49F975002233E7 /* Tabbar */,
@@ -764,6 +778,7 @@
 				212264A42D421A9600137763 /* ImageView.swift in Sources */,
 				21E519D02D48C3C300CF971A /* CartModel.swift in Sources */,
 				21B1C71B2D4A9B9D001CB9DE /* SearchView.swift in Sources */,
+				21465FB52D6643AE0039B0B6 /* PopUpView.swift in Sources */,
 				21E519C82D48B32500CF971A /* HomeExtension.swift in Sources */,
 				212264AE2D4238AE00137763 /* EmailValidate.swift in Sources */,
 				21E519C12D48AE7800CF971A /* SneakerCardView.swift in Sources */,
@@ -792,6 +807,7 @@
 				21B1C75E2D50C344001CB9DE /* CheckViewModel.swift in Sources */,
 				21701AA72D3F91E100C24473 /* SupabaseManager.swift in Sources */,
 				21701AB92D3F937400C24473 /* SignInView.swift in Sources */,
+				21465FB22D6642EF0039B0B6 /* PasswordView.swift in Sources */,
 				21E7B1202D52712F00F009EE /* SideMenuView.swift in Sources */,
 				214EC9342D49F9BA002233E7 /* TabbarView.swift in Sources */,
 				21E519C52D48B0E000CF971A /* SneakerViewModel.swift in Sources */,

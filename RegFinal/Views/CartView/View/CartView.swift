@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CartView: View {
     
-    let sneakers: [SneakerModel]
+    var sneakers: [SneakerModel]
     let cartItems: [CartModel]
     
     @StateObject var resultvm = CheckViewModel()
+    @ObservedObject var cvm = CartViewModel()
     
     var body: some View {
         NavigationStack {
@@ -31,7 +32,16 @@ struct CartView: View {
                             if cartItems.contains(where: { cart in
                                 cart.id_sneaker == sneaker.id && cart.id_user == SupabaseManager.instance.supabase.auth.currentUser?.id
                             }) {
+                                HStack {
+                                    
+                                
                                 SneakerCardForCartView(sneaker: sneaker)
+                                    Button {
+                                        cvm.deleteCart(sneaker: sneaker.id)
+                                    } label: {
+                                        Image("Delete")
+                                    }
+                                }
                             }
                         }
                         Spacer()

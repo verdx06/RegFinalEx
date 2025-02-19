@@ -104,6 +104,13 @@ class SupabaseManager {
         try await supabase.from("cart").update(["count" : count+1]).eq("id_user", value: user.id).eq("id_sneaker", value: sneaker).execute()
     }
     
+    func deleteCart(sneaker: Int) async throws {
+        let user = try await supabase.auth.session.user
+        
+        try await supabase.from("cart").delete().eq("id_sneaker", value: sneaker).eq("id_user", value: user.id).execute()
+        
+    }
+    
     func addTextInSearchField(text: String) async throws {
         let user = try await supabase.auth.session.user
         
@@ -122,6 +129,19 @@ class SupabaseManager {
         let searchText = try JSONDecoder().decode([SearchModel].self, from: getSearchText.data)
         
         return searchText
+    }
+    
+    func resetPassword(email: String) async throws {
+        try await supabase.auth.resetPasswordForEmail("berkut589243@gmail.com")
+    }
+    
+    func OTP(email: String, otp: String) async throws {
+        try await supabase.auth.verifyOTP(email: email, token: otp, type: .recovery)
+    }
+    
+    func updatePassword(password: String) async throws {
+        try await supabase.auth.update(user: .init(password: password))
+        
     }
     
 }
