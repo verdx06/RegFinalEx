@@ -25,12 +25,27 @@ class SupabaseManager {
         let newUser = UserModel(
             id: user.id,
             name: name,
-            email: email
+            email: email,
+            surname: nil,
+            phone: nil
         )
         
         try await supabase.from("users").insert(newUser).execute()
         
         try await supabase.auth.signOut()
+    }
+    
+    func getProfile() async throws -> UserModel {
+        let user = try await supabase.auth.session.user
+        let getUser = supabase.from("users").select().eq("id", value: user.id)
+        
+        let response: [UserModel] = try await getUser.execute().value
+        
+        guard let currentuser = response.first else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return currentuser
     }
     
     func signOut() async throws {
@@ -141,6 +156,39 @@ class SupabaseManager {
     
     func updatePassword(password: String) async throws {
         try await supabase.auth.update(user: .init(password: password))
+        
+    }
+    
+    func updateField(name: String, surname: String, phone: String) async throws {
+        let user = try await supabase.auth.session.user
+        
+        try await supabase.from("users").update(["name":name, "surname":surname, "phone":phone]).eq("id", value: user.id).execute()
+        
+    }
+    
+    func uploadAvatar(image: Data) async throws {
+        let user = try await supabase.auth.session.user
+        
+        let files = try await supabase.storage.from("photos").list(path: "public")
+        
+        let exits: Bool = files.reduce(false) { partialResult, file in
+            if partialResult {
+                return true
+            }
+            return file.name == "\(user.id).jpg"
+        }
+        
+        
+        if exits {
+            try await supabase.storage.from("photos")
+                .update("public/\(user.id).jpg", data: image)
+        } else {
+            try await supabase.storage.from("photos")
+                .upload("public/\(user.id).jpg", data: image)
+        }
+    }
+    
+    func downloadAvatar() async throws {
         
     }
     

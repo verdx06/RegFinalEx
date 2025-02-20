@@ -32,6 +32,9 @@
 		212264F32D43D85800137763 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 212264F22D43D85800137763 /* Supabase */; };
 		21465FB22D6642EF0039B0B6 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21465FB12D6642EF0039B0B6 /* PasswordView.swift */; };
 		21465FB52D6643AE0039B0B6 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21465FB32D6643AE0039B0B6 /* PopUpView.swift */; };
+		214660482D6771970039B0B6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214660472D6771940039B0B6 /* ProfileViewModel.swift */; };
+		2146604A2D67796E0039B0B6 /* EditField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214660492D67796E0039B0B6 /* EditField.swift */; };
+		2146604C2D6789660039B0B6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146604B2D6789660039B0B6 /* ImagePicker.swift */; };
 		214EC9342D49F9BA002233E7 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214EC9332D49F9BA002233E7 /* TabbarView.swift */; };
 		21701A942D3F807A00C24473 /* RegFinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21701A932D3F807A00C24473 /* RegFinalApp.swift */; };
 		21701A962D3F807A00C24473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21701A952D3F807A00C24473 /* ContentView.swift */; };
@@ -108,6 +111,10 @@
 		212264C02D43879000137763 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		21465FB12D6642EF0039B0B6 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		21465FB32D6643AE0039B0B6 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		214660472D6771940039B0B6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		214660492D67796E0039B0B6 /* EditField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditField.swift; sourceTree = "<group>"; };
+		2146604B2D6789660039B0B6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		214953202D67A44B002F887B /* osnova.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = osnova.txt; sourceTree = "<group>"; };
 		214EC9332D49F9BA002233E7 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		21701A902D3F807A00C24473 /* RegFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21701A932D3F807A00C24473 /* RegFinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegFinalApp.swift; sourceTree = "<group>"; };
@@ -358,6 +365,7 @@
 		21701A872D3F807A00C24473 = {
 			isa = PBXGroup;
 			children = (
+				214953202D67A44B002F887B /* osnova.txt */,
 				21701A922D3F807A00C24473 /* RegFinal */,
 				212264842D40D50200137763 /* RegFinalTests */,
 				21701A912D3F807A00C24473 /* Products */,
@@ -404,6 +412,7 @@
 		21701AA12D3F8FD700C24473 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				214660472D6771940039B0B6 /* ProfileViewModel.swift */,
 				212264AD2D4238AE00137763 /* EmailValidate.swift */,
 				21DF3B572D3FA84D008E70EE /* SignViewModel.swift */,
 				21E519B82D47F07500CF971A /* CategoryViewModel.swift */,
@@ -637,7 +646,9 @@
 			isa = PBXGroup;
 			children = (
 				21E7B1232D52734800F009EE /* ProfileView.swift */,
+				214660492D67796E0039B0B6 /* EditField.swift */,
 				21E7B1272D52777300F009EE /* BarCodeView.swift */,
+				2146604B2D6789660039B0B6 /* ImagePicker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -765,6 +776,7 @@
 			files = (
 				212264B22D424D8D00137763 /* ExtensionsOnboarding.swift in Sources */,
 				21E519CA2D48C1F800CF971A /* CartViewModel.swift in Sources */,
+				214660482D6771970039B0B6 /* ProfileViewModel.swift in Sources */,
 				21B1C7522D50B3F5001CB9DE /* FavoroteView.swift in Sources */,
 				21B1C7602D50CE10001CB9DE /* SearchModel.swift in Sources */,
 				212264C12D43879000137763 /* HomeView.swift in Sources */,
@@ -795,6 +807,7 @@
 				21E519B72D47F01C00CF971A /* CategoryModel.swift in Sources */,
 				21DF3B5C2D3FB8DB008E70EE /* CustomButton.swift in Sources */,
 				212264AC2D422A3700137763 /* UserDefault.swift in Sources */,
+				2146604A2D67796E0039B0B6 /* EditField.swift in Sources */,
 				21B1C7562D50BA0A001CB9DE /* CartView.swift in Sources */,
 				21DF3B582D3FA84D008E70EE /* SignViewModel.swift in Sources */,
 				212264B52D424E7600137763 /* ForgotPasswordView.swift in Sources */,
@@ -818,6 +831,7 @@
 				212264B72D426C0900137763 /* ForgotViewModel.swift in Sources */,
 				21B1C7622D50D0F5001CB9DE /* SearchViewModel.swift in Sources */,
 				21B1C74E2D4F94FD001CB9DE /* PopularView.swift in Sources */,
+				2146604C2D6789660039B0B6 /* ImagePicker.swift in Sources */,
 				21E7B12A2D5278B800F009EE /* BarCodeViewModel.swift in Sources */,
 				21E519C32D48B07B00CF971A /* SneakerModel.swift in Sources */,
 			);
@@ -1001,6 +1015,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RegFinal/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = Avatarka;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1031,6 +1046,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RegFinal/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = Avatarka;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

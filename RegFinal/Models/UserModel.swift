@@ -12,4 +12,6 @@ struct UserModel: Codable {
     let id: UUID
     let name: String
     let email: String
+    let surname: String?
+    let phone: String?
 }

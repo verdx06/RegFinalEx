@@ -16,6 +16,8 @@ struct TabbarView: View {
     
     @StateObject var cartvm = CartViewModel()
     @StateObject var favoritevm = FavoriteViewModel()
+    
+    @State var isShown: Bool = false
 
     
     var body: some View {
@@ -48,6 +50,7 @@ struct TabbarView: View {
                     }
                     
                 }
+                
             }.onAppear(perform: {
                 categoryvm.getCategories()
                 cartvm.getCart()
@@ -56,6 +59,7 @@ struct TabbarView: View {
                     sneakervm.getSneaker()
                 }
             })
+            
             .edgesIgnoringSafeArea(.bottom)
         }.navigationBarBackButtonHidden()
     }
